@@ -18,7 +18,7 @@ RUN curl -sSL https://install.python-poetry.org | python3 - && \
 # ✅ ตั้งโฟลเดอร์ทำงานเป็น /app
 WORKDIR /app
 
-# ✅ คัดลอกไฟล์ทั้งหมดจากโปรเจกต์ไปยัง container
+# ✅ คัดลอกไฟล์สำหรับpoetryจากโปรเจกต์ไปยัง container
 COPY  poetry.lock pyproject.toml /app/
 
 # ✅ บอก Poetry ว่าให้ติดตั้ง package ลงระบบตรง ๆ (ไม่สร้าง virtualenv แยก)

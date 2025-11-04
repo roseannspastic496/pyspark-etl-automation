@@ -20,24 +20,6 @@ cur = conn.cursor()
 
 
 def fetchEtlResult(cur, id: int) -> tuple:
-    """
-    Get the customer data from specified id
-
-    ...
-    
-    Parameters
-    ----------
-    cur: 
-        Postgresql connection's cursor
-    id: int
-        Row's id
-
-    Return
-    ----------
-    row: tuple
-        row in form of (favourite_product, longest_streak)
-    """
-
     cur.execute("""
         SELECT 
             favourite_product,

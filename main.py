@@ -26,18 +26,17 @@ dataSchema = StructType([
     StructField("unitsSold",IntegerType())  
 ])
 
-spark: SparkSession = SparkSession\
+spark = SparkSession\
     .builder\
     .master('spark://spark:7077')\
     .appName("Sertis")\
     .config("spark.jars", "/app/postgresql-42.6.0.jar") \
     .getOrCreate()
 
-# TODO: implement the pipeline. Remove the lines below, they are there just to get started.
-#  Feel free to use either Spark DSL (PySpark) or Spark SQL syntax.
-#  Both examples do the same, group by transactionId and calculate the sum of `unitsSold`.
+#  Spark read data from specific CSV file and specific source
 transactionDf = spark.read.csv(args.source, sep='|', header=True, schema=dataSchema)
 
+# use Spark SQL syntax
 transactionDf.createOrReplaceTempView("transactions")
 # Create customer purchase summary table to query each customer favourite product
 purchaseSummaryDf = spark.sql("""
@@ -121,4 +120,6 @@ customersSummaryDf.write\
     .save()
 
 # Spawn subprocess to verify the ETL process
-subprocess.run("pytest")
+result = subprocess.run("pytest")
+if result.returncode != 0:
+    raise RuntimeError("Tests failed")

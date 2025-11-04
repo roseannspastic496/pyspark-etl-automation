@@ -1,3 +1,5 @@
-data/
+data/*.csv
+.env
+etl.cfg
 **/__pycache__/
 **/.pytest_cache/
